@@ -247,7 +247,7 @@
                                     <i class="fas fa-cog mr-3 text-gray-400"></i>Pengaturan
                                 </a>
                                 <hr class="my-2">
-                                <form method="POST" action="{{ route('admin.logout') }}">
+                                <form method="POST" action="{{ route('auth.logout') }}">
                                     @csrf
                                     <button type="submit" class="flex items-center w-full px-4 py-2 text-sm text-red-600 hover:bg-red-50 transition-colors">
                                         <i class="fas fa-sign-out-alt mr-3"></i>Logout

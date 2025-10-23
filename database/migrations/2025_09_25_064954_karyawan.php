@@ -20,7 +20,8 @@ return new class extends Migration
             $table->date('tanggal_lahir');
             $table->enum('jenis_kelamin', ['L', 'P']);
             $table->foreignId('perusahaan_id')->constrained('perusahaan')->onDelete('cascade');
-            $table->string('jabatan')->nullable();
+            $table->foreignId('divisi_id')->constrained('divisi')->onDelete('cascade');
+            $table->foreignId('jabatan_id')->constrained('jabatan')->onDelete('cascade');
             $table->string('telepon')->nullable();
             $table->text('alamat')->nullable();
             $table->date('tanggal_masuk')->nullable();
@@ -29,6 +30,8 @@ return new class extends Migration
             
             // Index untuk optimasi query
             $table->index(['perusahaan_id', 'status']);
+            $table->index(['divisi_id', 'status']);
+            $table->index(['jabatan_id', 'status']);
             $table->index('nik');
         });
     }

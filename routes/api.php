@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PerusahaanController;
 use App\Http\Controllers\PresensiController;
+use App\Http\Controllers\JabatanController;
+use App\Http\Controllers\DivisiController;
 
 // Public routes
 Route::post('/auth/login', [AuthController::class, 'login']);
@@ -19,6 +21,12 @@ Route::group(['middleware' => 'jwt.auth'], function () {
     
     // Perusahaan routes
     Route::apiResource('perusahaan', PerusahaanController::class);
+    
+    // Jabatan routes
+    Route::apiResource('jabatan', JabatanController::class);
+    
+    // Divisi routes
+    Route::apiResource('divisi', DivisiController::class);
     
     // Presensi routes
     Route::apiResource('presensi', PresensiController::class);

@@ -93,6 +93,80 @@ class AuthController extends Controller
     }
 
     /**
+     * Web login for users (karyawan)
+     */
+    public function webLogin(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|email',
+            'password' => 'required|string|min:6',
+        ]);
+
+        if ($validator->fails()) {
+            return back()->withErrors($validator)->withInput();
+        }
+
+        $credentials = $request->only('email', 'password');
+        
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
+            return redirect()->intended(route('user.dashboard'));
+        }
+
+        return back()->withErrors([
+            'email' => 'The provided credentials do not match our records.',
+        ])->withInput();
+    }
+
+    /**
+     * Web login for admin
+     */
+    public function adminLogin(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|email',
+            'password' => 'required|string|min:6',
+        ]);
+
+        if ($validator->fails()) {
+            return back()->withErrors($validator)->withInput();
+        }
+
+        $credentials = $request->only('email', 'password');
+        
+        if (Auth::attempt($credentials)) {
+            $user = Auth::user();
+            
+            // Check if user is admin
+            if ($user->role !== 'admin') {
+                Auth::logout();
+                return back()->withErrors([
+                    'email' => 'Access denied. Admin privileges required.',
+                ])->withInput();
+            }
+            
+            $request->session()->regenerate();
+            return redirect()->intended(route('admin.dashboard'));
+        }
+
+        return back()->withErrors([
+            'email' => 'The provided credentials do not match our records.',
+        ])->withInput();
+    }
+
+    /**
+     * Web logout
+     */
+    public function webLogout(Request $request)
+    {
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        
+        return redirect()->route('landing');
+    }
+
+    /**
      * Get the token array structure.
      */
     protected function createNewToken($token)

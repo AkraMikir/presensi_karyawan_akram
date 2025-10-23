@@ -17,6 +17,12 @@ Route::prefix('user')->name('user.')->group(function () {
         return view('user.login');
     })->name('login');
     
+    // User Login POST
+    Route::post('/login', [AuthController::class, 'webLogin'])->name('login.post');
+    
+    // User Logout
+    Route::post('/logout', [AuthController::class, 'webLogout'])->name('logout');
+    
     // User Dashboard (Protected)
     Route::get('/dashboard', function () {
         return view('user.dashboard-logged');
@@ -43,6 +49,12 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/login', function () {
         return view('admin.login');
     })->name('login');
+    
+    // Admin Login POST
+    Route::post('/login', [AuthController::class, 'adminLogin'])->name('login.post');
+    
+    // Admin Logout
+    Route::post('/logout', [AuthController::class, 'webLogout'])->name('logout');
     
     // Admin Dashboard
     Route::get('/dashboard', function () {
@@ -71,6 +83,20 @@ Route::prefix('admin')->name('admin.')->group(function () {
         })->name('index');
     });
     
+    // Admin Jabatan Management
+    Route::prefix('jabatan')->name('jabatan.')->group(function () {
+        Route::get('/', function () {
+            return view('admin.jabatan.index');
+        })->name('index');
+    });
+    
+    // Admin Divisi Management
+    Route::prefix('divisi')->name('divisi.')->group(function () {
+        Route::get('/', function () {
+            return view('admin.divisi.index');
+        })->name('index');
+    });
+    
     // Admin Perusahaan Management
     Route::prefix('perusahaan')->name('perusahaan.')->group(function () {
         Route::get('/', function () {
@@ -95,6 +121,9 @@ Route::get('/login', function () {
 Route::get('/register', function () {
     return view('auth.register');
 })->name('register');
+
+// Legacy logout route
+Route::post('/logout', [AuthController::class, 'webLogout'])->name('auth.logout');
 
 // Fallback route - redirect to user dashboard if route not found
 Route::fallback(function () {

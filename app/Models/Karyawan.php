@@ -2,12 +2,14 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Karyawan extends Model
 {
+    use HasFactory;
     protected $table = 'karyawan';
     
     protected $fillable = [
@@ -18,7 +20,8 @@ class Karyawan extends Model
         'tanggal_lahir',
         'jenis_kelamin',
         'perusahaan_id',
-        'jabatan',
+        'divisi_id',
+        'jabatan_id',
         'telepon',
         'alamat',
         'tanggal_masuk',
@@ -44,6 +47,22 @@ class Karyawan extends Model
     public function perusahaan(): BelongsTo
     {
         return $this->belongsTo(perusahaanModel::class, 'perusahaan_id');
+    }
+
+    /**
+     * Get the divisi that owns the karyawan.
+     */
+    public function divisi(): BelongsTo
+    {
+        return $this->belongsTo(Divisi::class, 'divisi_id');
+    }
+
+    /**
+     * Get the jabatan that owns the karyawan.
+     */
+    public function jabatan(): BelongsTo
+    {
+        return $this->belongsTo(Jabatan::class, 'jabatan_id');
     }
 
     /**

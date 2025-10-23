@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Login Karyawan - Sistem Presensi')
+@section('title', 'Register - Sistem Presensi')
 
 @section('content')
 <div class="min-h-screen bg-gradient-to-br from-cream-bg via-white to-pastel-blue flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
@@ -8,17 +8,35 @@
         <!-- Header -->
         <div class="text-center">
             <div class="mx-auto h-16 w-16 bg-gradient-to-r from-primary-green to-primary-blue rounded-2xl flex items-center justify-center">
-                <i class="fas fa-user text-2xl text-white"></i>
+                <i class="fas fa-user-plus text-2xl text-white"></i>
             </div>
-            <h2 class="mt-6 text-3xl font-bold text-gray-900">Login Karyawan</h2>
-            <p class="mt-2 text-sm text-gray-600">Masuk untuk mengakses sistem presensi dan dashboard karyawan</p>
+            <h2 class="mt-6 text-3xl font-bold text-gray-900">Daftar Akun</h2>
+            <p class="mt-2 text-sm text-gray-600">Buat akun baru untuk mengakses sistem presensi</p>
         </div>
 
-        <!-- Login Form -->
+        <!-- Register Form -->
         <div class="bg-white rounded-3xl p-8 shadow-glass border border-gray-100">
-            <form class="space-y-6" method="POST" action="{{ route('user.login.post') }}">
+            <form class="space-y-6" method="POST" action="{{ route('register') }}">
                 @csrf
                 
+                <!-- Name Field -->
+                <div>
+                    <label for="name" class="block text-sm font-medium text-gray-700 mb-2">
+                        <i class="fas fa-user mr-2 text-primary-blue"></i>Nama Lengkap
+                    </label>
+                    <input id="name" 
+                           name="name" 
+                           type="text" 
+                           autocomplete="name" 
+                           required 
+                           class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary-blue focus:border-transparent transition-all"
+                           placeholder="Masukkan nama lengkap"
+                           value="{{ old('name') }}">
+                    @error('name')
+                        <p class="mt-2 text-sm text-red-500">{{ $message }}</p>
+                    @enderror
+                </div>
+
                 <!-- Email Field -->
                 <div>
                     <label for="email" class="block text-sm font-medium text-gray-700 mb-2">
@@ -30,7 +48,7 @@
                            autocomplete="email" 
                            required 
                            class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary-blue focus:border-transparent transition-all"
-                           placeholder="karyawan@example.com"
+                           placeholder="email@example.com"
                            value="{{ old('email') }}">
                     @error('email')
                         <p class="mt-2 text-sm text-red-500">{{ $message }}</p>
@@ -46,7 +64,7 @@
                         <input id="password" 
                                name="password" 
                                type="password" 
-                               autocomplete="current-password" 
+                               autocomplete="new-password" 
                                required 
                                class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary-blue focus:border-transparent transition-all pr-12"
                                placeholder="Masukkan password">
@@ -61,32 +79,41 @@
                     @enderror
                 </div>
 
-                <!-- Remember Me -->
-                <div class="flex items-center justify-between">
-                    <div class="flex items-center">
-                        <input id="remember" 
-                               name="remember" 
-                               type="checkbox" 
-                               class="h-4 w-4 text-primary-blue focus:ring-primary-blue border-gray-300 rounded">
-                        <label for="remember" class="ml-2 block text-sm text-gray-700">
-                            Ingat saya
-                        </label>
-                    </div>
-                    <div class="text-sm">
-                        <a href="#" class="font-medium text-primary-blue hover:text-blue-600 transition-colors">
-                            Lupa password?
-                        </a>
-                    </div>
+                <!-- Confirm Password Field -->
+                <div>
+                    <label for="password_confirmation" class="block text-sm font-medium text-gray-700 mb-2">
+                        <i class="fas fa-lock mr-2 text-primary-blue"></i>Konfirmasi Password
+                    </label>
+                    <input id="password_confirmation" 
+                           name="password_confirmation" 
+                           type="password" 
+                           autocomplete="new-password" 
+                           required 
+                           class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary-blue focus:border-transparent transition-all"
+                           placeholder="Konfirmasi password">
                 </div>
 
-                <!-- Login Button -->
+                <!-- Terms and Conditions -->
+                <div class="flex items-center">
+                    <input id="terms" 
+                           name="terms" 
+                           type="checkbox" 
+                           required
+                           class="h-4 w-4 text-primary-blue focus:ring-primary-blue border-gray-300 rounded">
+                    <label for="terms" class="ml-2 block text-sm text-gray-700">
+                        Saya menyetujui 
+                        <a href="#" class="text-primary-blue hover:text-blue-600 transition-colors">syarat dan ketentuan</a>
+                    </label>
+                </div>
+
+                <!-- Register Button -->
                 <div>
                     <button type="submit" 
                             class="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-xl text-white bg-gradient-to-r from-primary-green to-primary-blue hover:from-green-600 hover:to-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-blue transition-all shadow-lg hover:shadow-xl">
                         <span class="absolute left-0 inset-y-0 flex items-center pl-3">
-                            <i class="fas fa-sign-in-alt text-white group-hover:text-white"></i>
+                            <i class="fas fa-user-plus text-white group-hover:text-white"></i>
                         </span>
-                        Masuk ke Dashboard
+                        Daftar Sekarang
                     </button>
                 </div>
 
@@ -102,23 +129,11 @@
         <!-- Additional Info -->
         <div class="text-center">
             <p class="text-sm text-gray-500">
-                Admin? 
-                <a href="{{ route('admin.login') }}" class="text-primary-blue hover:text-blue-600 transition-colors font-medium">
-                    Login sebagai Admin
+                Sudah punya akun? 
+                <a href="{{ route('login') }}" class="text-primary-blue hover:text-blue-600 transition-colors font-medium">
+                    Login sekarang
                 </a>
             </p>
-        </div>
-
-        <!-- Quick Access Info -->
-        <div class="bg-pastel-blue/50 rounded-2xl p-6">
-            <h3 class="text-lg font-semibold text-gray-900 mb-3">
-                <i class="fas fa-info-circle mr-2 text-primary-blue"></i>Informasi Login
-            </h3>
-            <div class="space-y-2 text-sm text-gray-600">
-                <p><i class="fas fa-check-circle mr-2 text-green-500"></i>Gunakan email yang terdaftar di sistem</p>
-                <p><i class="fas fa-check-circle mr-2 text-green-500"></i>Password case-sensitive</p>
-                <p><i class="fas fa-check-circle mr-2 text-green-500"></i>Hubungi HR jika lupa password</p>
-            </div>
         </div>
     </div>
 </div>
@@ -148,9 +163,9 @@
         submitBtn.disabled = true;
     });
 
-    // Auto-focus on email field
+    // Auto-focus on name field
     document.addEventListener('DOMContentLoaded', function() {
-        document.getElementById('email').focus();
+        document.getElementById('name').focus();
     });
 </script>
 @endpush

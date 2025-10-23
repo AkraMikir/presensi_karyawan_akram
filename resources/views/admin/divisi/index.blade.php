@@ -1,22 +1,22 @@
 @extends('layouts.admin')
 
-@section('title', 'Perusahaan - Admin Dashboard')
-@section('page-title', 'Perusahaan')
+@section('title', 'Divisi - Admin Dashboard')
+@section('page-title', 'Divisi')
 
 @section('content')
 <div class="p-6">
     <!-- Header Section -->
     <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-8">
         <div>
-            <h1 class="text-2xl font-bold text-gray-900 mb-2">Daftar Perusahaan</h1>
-            <p class="text-gray-600">Kelola data perusahaan dalam sistem</p>
+            <h1 class="text-2xl font-bold text-gray-900 mb-2">Daftar Divisi</h1>
+            <p class="text-gray-600">Kelola data divisi dan departemen perusahaan</p>
         </div>
         <div class="flex space-x-4 mt-4 sm:mt-0">
             <button class="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors">
                 <i class="fas fa-download mr-2"></i>Export
             </button>
             <button class="px-4 py-2 bg-primary-green text-white rounded-lg hover:bg-green-600 transition-colors">
-                <i class="fas fa-plus mr-2"></i>Tambah Perusahaan
+                <i class="fas fa-plus mr-2"></i>Tambah Divisi
             </button>
         </div>
     </div>
@@ -26,11 +26,11 @@
         <div class="bg-white rounded-2xl p-6 shadow-soft border border-gray-100">
             <div class="flex items-center justify-between">
                 <div>
-                    <p class="text-sm font-medium text-gray-600">Total Perusahaan</p>
+                    <p class="text-sm font-medium text-gray-600">Total Divisi</p>
                     <p class="text-2xl font-bold text-gray-900">12</p>
                 </div>
                 <div class="w-12 h-12 bg-pastel-blue rounded-xl flex items-center justify-center">
-                    <i class="fas fa-building text-primary-blue text-xl"></i>
+                    <i class="fas fa-sitemap text-primary-blue text-xl"></i>
                 </div>
             </div>
         </div>
@@ -69,7 +69,7 @@
         </div>
     </div>
 
-    <!-- Perusahaan Table -->
+    <!-- Divisi Table -->
     <div class="bg-white rounded-2xl shadow-soft border border-gray-100 overflow-hidden">
         <div class="overflow-x-auto">
             <table class="w-full">
@@ -78,10 +78,10 @@
                         <th class="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                             <input type="checkbox" class="rounded border-gray-300 text-primary-blue focus:ring-primary-blue">
                         </th>
+                        <th class="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Divisi</th>
                         <th class="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Perusahaan</th>
-                        <th class="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Alamat</th>
-                        <th class="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Telepon</th>
-                        <th class="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email</th>
+                        <th class="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Kepala Divisi</th>
+                        <th class="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Deskripsi</th>
                         <th class="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Karyawan</th>
                         <th class="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
                         <th class="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Aksi</th>
@@ -96,18 +96,18 @@
                         <td class="px-6 py-4 whitespace-nowrap">
                             <div class="flex items-center">
                                 <div class="w-12 h-12 bg-gradient-to-r from-primary-blue to-primary-purple rounded-xl flex items-center justify-center">
-                                    <i class="fas fa-building text-white"></i>
+                                    <i class="fas fa-sitemap text-white"></i>
                                 </div>
                                 <div class="ml-4">
-                                    <div class="text-sm font-medium text-gray-900">PT. Teknologi Maju</div>
-                                    <div class="text-sm text-gray-500">ID: 001</div>
+                                    <div class="text-sm font-medium text-gray-900">IT Department</div>
+                                    <div class="text-sm text-gray-500">Information Technology</div>
                                 </div>
                             </div>
                         </td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Jl. Sudirman No. 123, Jakarta</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">+62 21 1234 5678</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">info@tekmaju.com</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">450</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">PT. Teknologi Maju</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Ahmad Rizki</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Mengelola sistem dan teknologi</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">45</td>
                         <td class="px-6 py-4 whitespace-nowrap">
                             <span class="px-2 py-1 bg-green-100 text-green-800 text-xs font-medium rounded-full">Aktif</span>
                         </td>
@@ -135,18 +135,18 @@
                         <td class="px-6 py-4 whitespace-nowrap">
                             <div class="flex items-center">
                                 <div class="w-12 h-12 bg-gradient-to-r from-primary-green to-primary-blue rounded-xl flex items-center justify-center">
-                                    <i class="fas fa-building text-white"></i>
+                                    <i class="fas fa-sitemap text-white"></i>
                                 </div>
                                 <div class="ml-4">
-                                    <div class="text-sm font-medium text-gray-900">CV. Sukses Mandiri</div>
-                                    <div class="text-sm text-gray-500">ID: 002</div>
+                                    <div class="text-sm font-medium text-gray-900">HR Department</div>
+                                    <div class="text-sm text-gray-500">Human Resources</div>
                                 </div>
                             </div>
                         </td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Jl. Thamrin No. 456, Jakarta</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">+62 21 2345 6789</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">info@suksesmandiri.com</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">320</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">PT. Teknologi Maju</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Sarah Putri</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Mengelola sumber daya manusia</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">32</td>
                         <td class="px-6 py-4 whitespace-nowrap">
                             <span class="px-2 py-1 bg-green-100 text-green-800 text-xs font-medium rounded-full">Aktif</span>
                         </td>
@@ -174,18 +174,57 @@
                         <td class="px-6 py-4 whitespace-nowrap">
                             <div class="flex items-center">
                                 <div class="w-12 h-12 bg-gradient-to-r from-primary-purple to-primary-yellow rounded-xl flex items-center justify-center">
-                                    <i class="fas fa-building text-white"></i>
+                                    <i class="fas fa-sitemap text-white"></i>
                                 </div>
                                 <div class="ml-4">
-                                    <div class="text-sm font-medium text-gray-900">UD. Berkah Abadi</div>
-                                    <div class="text-sm text-gray-500">ID: 003</div>
+                                    <div class="text-sm font-medium text-gray-900">Finance</div>
+                                    <div class="text-sm text-gray-500">Financial Department</div>
                                 </div>
                             </div>
                         </td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Jl. Gatot Subroto No. 789, Jakarta</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">+62 21 3456 7890</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">info@berkahabadi.com</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">180</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">PT. Teknologi Maju</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Budi Santoso</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Mengelola keuangan perusahaan</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">28</td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <span class="px-2 py-1 bg-green-100 text-green-800 text-xs font-medium rounded-full">Aktif</span>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                            <div class="flex space-x-2">
+                                <button class="text-primary-blue hover:text-blue-600" title="Lihat Detail">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="text-primary-green hover:text-green-600" title="Edit">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="text-primary-yellow hover:text-yellow-600" title="Karyawan">
+                                    <i class="fas fa-users"></i>
+                                </button>
+                                <button class="text-red-500 hover:text-red-600" title="Hapus">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="hover:bg-gray-50">
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <input type="checkbox" class="rounded border-gray-300 text-primary-blue focus:ring-primary-blue">
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <div class="flex items-center">
+                                <div class="w-12 h-12 bg-gradient-to-r from-primary-yellow to-primary-green rounded-xl flex items-center justify-center">
+                                    <i class="fas fa-sitemap text-white"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <div class="text-sm font-medium text-gray-900">Marketing</div>
+                                    <div class="text-sm text-gray-500">Marketing Department</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">PT. Teknologi Maju</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Lisa Sari</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Mengelola pemasaran dan promosi</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">35</td>
                         <td class="px-6 py-4 whitespace-nowrap">
                             <span class="px-2 py-1 bg-yellow-100 text-yellow-800 text-xs font-medium rounded-full">Tidak Aktif</span>
                         </td>
